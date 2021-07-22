@@ -1,0 +1,15 @@
+---
+- name: Create an image
+  hosts: localhost
+  tasks: 
+    - name: create an image
+      ec2_ami:
+        instance_id: i-00000000
+        aws_access_key: ******************
+        aws_secret_key: *******************************
+        region: us-east-2
+        wait: yes
+        name: anisble_image
+        tags:
+          Name: anisble_image
+          Service: TestService
