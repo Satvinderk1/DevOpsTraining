@@ -1,0 +1,16 @@
+---
+- name: Launch an ec2 instance
+  hosts: localhost
+  tasks:
+    - name: create an ec2 instance
+      ec2:
+        key_name: devopstraining
+        region: us-east-2
+        instance_type: t2.micro
+        image: ami-0233c2d874b811deb
+        wait: yes
+        #group: webserver
+        count: 1
+        vpc_subnet_id: subnet-f4446bb8
+        assign_public_ip: yes
+
