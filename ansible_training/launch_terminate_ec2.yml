@@ -1,0 +1,25 @@
+---
+- name: Launch and terminate an ec2 instance
+  hosts: localhost
+  tasks:
+    - name: launch an ec2 instance
+      ec2:
+        key_name: ***************
+        region: us-east-2
+        instance_type: t2.micro
+        image: ami-********************
+        wait: yes
+        count: 1
+        vpc_subnet_id: subnet-********
+        assign_public_ip: yes
+      register: ec2
+
+- name: terminate an ec2 instance
+  hosts: localhost
+  tasks:
+    - name: terminate an ec2 instance that was launched in above task
+      ec2:
+        state: 'absent'
+        region: us-east-2
+        instance_ids: '{{ ec2.instance_ids }}'
+
